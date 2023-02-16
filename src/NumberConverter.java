@@ -2,7 +2,7 @@ import java.util.Arrays;
 public class NumberConverter {
     String[] digits;
     int base;
-    final String charData = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/";
+    final static String charData = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz+/";
 
     public NumberConverter(String number, int base) {
         String numberAsString = number;
@@ -88,6 +88,20 @@ public class NumberConverter {
         return output;
     }
 
+    public static boolean isValid(int base, String input) {
+        String key = charData.substring(0, base);
+        for (int i = 0; i < input.length(); i++) {
+            if (!key.contains(input.substring(i, i+1))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int getBase() {
+        return base;
+    }
+
     public int[] convertToOctal() {
         int[] output;
         String result = "";
@@ -96,14 +110,13 @@ public class NumberConverter {
         while (Math.pow(8, e) <= temp) {
             e++;
         }
-        System.out.println(e);
         for (int t = 0; t < e; t++) {
             if (Math.pow(8,e-t-1) <= temp) {
-                result += (temp - (temp % Math.pow(8,e-t-1))) / Math.pow(8,e-t-1);
-                temp -= Math.pow(8,e-t-1) * (temp - (temp % Math.pow(8,e-t-1))) / Math.pow(8,e-t-1);
-                System.out.println(temp);
-                System.out.println(result);
-            } else result += "0";
+                result +=  ((int) (temp / Math.pow(8,e-t-1)));
+                temp = (int) (temp % Math.pow(8,e-t-1));
+            } else {
+                result += "0";
+            }
         }
         output = new int[result.length()];
         for (int i = 0; i < result.length(); i++) {
@@ -111,55 +124,6 @@ public class NumberConverter {
         }
         return output;
     }
-/*
-        int[] output;
-        String result = "";
-        boolean checker = false;
-        int temp = Integer.parseInt(stupidArrayToString(convertToDecimal()));
-        int e = 1;
-        while (Math.pow(8, e) * 8 - 1 < temp) {
-            e++;
-        }
-        e++;
-        for (int t = 0; t < e; t++) {
-            for (int g = 7; g > 0; g--) {
-                if (Math.pow(8, e - t - 1) * g <= temp) {
-                    result += "" + g;
-                    temp -= Math.pow(8, e - t - 1) * g;
-                    checker = true;
-                } else result += "0";
-            }
-        }
-            output = new int[result.length()];
-            for (int i = 0; i < result.length(); i++) {
-                output[i] = Integer.parseInt(result.substring(i, i + 1));
-            }
-        return output;
-    }
-        /*
-        int[] output;
-
-        String result = "";
-        int temp = Integer.parseInt(stupidArrayToString(convertToDecimal()));
-        int e = 0;
-        while (Math.pow(8, e)*8-1 < temp) {
-            e++;
-        }
-        e++;
-        for (int t = 0; t < e; t++) {
-            if (Math.pow(8,e-t-1) <= temp) {
-                result += "1";
-                temp -= Math.pow(2,e-t-1);
-            } else result += "0";
-        }
-        output = new int[result.length()];
-        for (int i = 0; i < result.length(); i++) {
-            output[i] = Integer.parseInt(result.substring(i , i+1));
-        }
-        return output;
-        */
-
-
 
     public String stupidArrayToString(int[] array) {
         String output = "";
