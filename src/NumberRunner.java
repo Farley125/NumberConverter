@@ -46,23 +46,23 @@ class ConverterRunner {
                     System.out.println("Number: " + nc.displayOriginalNumber());
                     if (nc.getBase() == 2){
                         System.out.println("Number in Hexadecimal: " + nc.convertUniversal(16) + "\n");
-                        System.out.println("Number in Decimal: " + nc.displayDecalNumber());
-                        System.out.println("Number in Octal: " + nc.displayOctalNumber());
+                        System.out.println("Number in Decimal: " + nc.convertUniversal(2) + "\n");
+                        System.out.println("Number in Octal: " + nc.convertUniversal(8) + "\n");
                     }
                     if (nc.getBase() == 8){
                         System.out.println("Number in Hexadecimal: " + nc.convertUniversal(16) + "\n");
-                        System.out.println("Number in Decimal: " + nc.displayDecalNumber());
-                        System.out.println("Number in Binary: " + nc.displayBinaryNumber());
+                        System.out.println("Number in Decimal: " +  nc.convertUniversal(10) + "\n");
+                        System.out.println("Number in Binary: " + nc.convertUniversal(2) + "\n");
                     }
                     if (nc.getBase() == 10){
                         System.out.println("Number in Hexadecimal: " + nc.convertUniversal(16) + "\n");
-                        System.out.println("Number in Octal: " + nc.displayOctalNumber());
-                        System.out.println("Number in Binary: " + nc.displayBinaryNumber());
+                        System.out.println("Number in Octal: " + nc.convertUniversal(8) + "\n");
+                        System.out.println("Number in Binary: " + nc.convertUniversal(2) + "\n");
                     }
                     if (nc.getBase() == 16){
-                        System.out.println("Number in Decimal: " + nc.displayDecalNumber());
-                        System.out.println("Number in Octal: " + nc.displayOctalNumber());
-                        System.out.println("Number in Binary: " + nc.displayBinaryNumber());
+                        System.out.println("Number in Decimal: " + nc.convertUniversal(10) + "\n");
+                        System.out.println("Number in Octal: " + nc.convertUniversal(8) + "\n");
+                        System.out.println("Number in Binary: " + nc.convertUniversal(2) + "\n");
                     }
                 } else System.out.println("Invalid Input.");
             }

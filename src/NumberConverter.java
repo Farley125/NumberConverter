@@ -22,34 +22,6 @@ public class NumberConverter {
         return o;
     }
 
-    public String displayDecalNumber() {
-        String o = "";
-        for (int i = 0; i < convertToDecimal().length; i++) {
-            o = o + convertToDecimal()[i];
-        }
-        o = o + "\n";
-        return o;
-    }
-
-    public String displayBinaryNumber() {
-        String o = "";
-        for (int i = 0; i < convertToBinary().length; i++) {
-            o = o + convertToBinary()[i];
-        }
-        o = o + "\n";
-        return o;
-    }
-
-    public String displayOctalNumber() {
-        String o = "";
-        for (int i = 0; i < convertToOctal().length; i++) {
-            o = o + convertToOctal()[i];
-        }
-        o = o + "\n";
-        return o;
-    }
-
-
     public String[] getDigits() {
         return digits;
     }
@@ -67,27 +39,6 @@ public class NumberConverter {
         return output;
     }
 
-    public int[] convertToBinary() {
-        int[] output;
-        String result = "";
-        int temp = Integer.parseInt(stupidArrayToString(convertToDecimal()));
-            int e = 0;
-            while (Math.pow(2, e)*2-1 < temp) {
-                e++;
-            }
-            e++;
-            for (int t = 0; t < e; t++) {
-                if (Math.pow(2,e-t-1) <= temp) {
-                    result += "1";
-                    temp -= Math.pow(2,e-t-1);
-                } else result += "0";
-            }
-        output = new int[result.length()];
-        for (int i = 0; i < result.length(); i++) {
-            output[i] = Integer.parseInt(result.substring(i , i+1));
-        }
-        return output;
-    }
 
     public static boolean isValid(int base, String input) {
         String key = charData.substring(0, base);
@@ -102,29 +53,6 @@ public class NumberConverter {
 
     public int getBase() {
         return base;
-    }
-
-    public int[] convertToOctal() {
-        int[] output;
-        String result = "";
-        int temp = Integer.parseInt(stupidArrayToString(convertToDecimal()));
-        int e = 1;
-        while (Math.pow(8, e) <= temp) {
-            e++;
-        }
-        for (int t = 0; t < e; t++) {
-            if (Math.pow(8,e-t-1) <= temp) {
-                result +=  ((int) (temp / Math.pow(8,e-t-1)));
-                temp = (int) (temp % Math.pow(8,e-t-1));
-            } else {
-                result += "0";
-            }
-        }
-        output = new int[result.length()];
-        for (int i = 0; i < result.length(); i++) {
-            output[i] = Integer.parseInt(result.substring(i , i+1));
-        }
-        return output;
     }
 
 
