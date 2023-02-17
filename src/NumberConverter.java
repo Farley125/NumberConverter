@@ -95,7 +95,9 @@ public class NumberConverter {
                 return false;
             }
         }
+        System.out.println("test");
         return true;
+
     }
 
     public int getBase() {
