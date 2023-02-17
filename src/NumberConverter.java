@@ -49,6 +49,7 @@ public class NumberConverter {
         return o;
     }
 
+
     public String[] getDigits() {
         return digits;
     }
@@ -95,7 +96,6 @@ public class NumberConverter {
                 return false;
             }
         }
-        System.out.println("test");
         return true;
 
     }
@@ -127,6 +127,24 @@ public class NumberConverter {
         return output;
     }
 
+
+    public String convertUniversal(int base) {
+        String result = "";
+        int temp = Integer.parseInt(stupidArrayToString(convertToDecimal()));
+        int e = 1;
+        while (Math.pow(base, e) <= temp) {
+            e++;
+        }
+        for (int t = 0; t < e; t++) {
+            if (Math.pow(base,e-t-1) <= temp) {
+                result +=  charData.substring(((int) (temp / Math.pow(base,e-t-1))), ((int) (temp / Math.pow(base,e-t-1)))+1);
+                temp = (int) (temp % Math.pow(base,e-t-1));
+            } else {
+                result += "0";
+            }
+        }
+        return result;
+    }
     public String stupidArrayToString(int[] array) {
         String output = "";
         for (int i = 0; i < array.length; i++) {
